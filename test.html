@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Browser Lock Detector</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+            background-color: #f0f0f0;
+            text-align: center;
+        }
+        .container {
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+            max-width: 600px;
+            margin: auto;
+        }
+        h1 {
+            color: #333;
+        }
+        p {
+            color: #666;
+            line-height: 1.6;
+        }
+        code {
+            background-color: #eee;
+            padding: 2px 5px;
+            border-radius: 4px;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <h1>Browser Lock Detector</h1>
+        <p>This page will log a message to the browser's console when the page visibility changes. This happens when you lock your phone or switch to another app.</p>
+        <p>To test, open this file on your mobile browser, then connect your desktop developer tools to your mobile device to view the console. Watch the console as you lock your phone.</p>
+        <p>The current document state is: <span id="visibilityState"></span></p>
+    </div>
+
+    <script>
+        const stateElement = document.getElementById('visibilityState');
+
+        function logVisibilityState() {
+            const currentState = document.visibilityState;
+            stateElement.textContent = currentState;
+            console.log(`[${new Date().toLocaleTimeString()}] Visibility state changed to: ${currentState}`);
+        }
+
+        // Add the event listener to the document
+        document.addEventListener('visibilitychange', logVisibilityState);
+
+        // Log the initial state
+        logVisibilityState();
+    </script>
+
+</body>
+</html>
